@@ -1,5 +1,0 @@
- gcc hilbert_points.c -I butz-lawder.h -o hilbert_points
- ./hilbert_points > hilbert_generated_points.h
- cmake .
- make
- ./LongLine.app/Contents/MacOS/LongLine

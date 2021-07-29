@@ -13,12 +13,27 @@
 #include <vtkRenderWindow.h>
 #include <vtkRenderWindowInteractor.h>
 #include <vtkRenderer.h>
-#include "hilbert_generated_points.h"
+#include "butz-lawder.h"
+
+#define VERTS 8*8*8
 
 int main(int, char*[])
 {
-  // Create five points.
+  Point pt;
+  Hcode v = {0};
+
   double origin[3] = {0.0, 0.0, 0.0};
+  double p[VERTS][3];
+
+  for (unsigned int i = 0; i < VERTS; i++) {
+    v.hcode[0] = i;
+    v.hcode[1] = 0;
+    v.hcode[2] = 0;
+    pt = H_decode(v);
+    p[i][0] = (double)pt.hcode[0];
+    p[i][1] = (double)pt.hcode[1];
+    p[i][2] = (double)pt.hcode[2];
+  }
 
   // Create a vtkPoints object and store the points in it
   vtkNew<vtkPoints> points;
